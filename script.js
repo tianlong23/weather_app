@@ -1,13 +1,3 @@
-//STEPS
-//  https://www.youtube.com/watch?v=WZNG8UomjSI&t=25s
-//Build out HTML and CSS to make it look exactly as I want it to with dummy data, draft own design - DONE
-//simple layout with background image, and then a square in the middle with the information required - DONE
-//information: search bar, weather in X, temperature, cloudy/sunny/whatever, humidity, and wind speed - DONE
-
-//build API in js
-//openweathermap.org
-//gather data from API
-//assign to existing html elements
 
 let weather = {
     apiKey: "60b30e85c4e96b584f5301999550a327",
@@ -19,8 +9,10 @@ let weather = {
         + this.apiKey)
         .then((response) => response.json())
         .then((data) => this.displayWeather(data))
+        .catch(catchError)
     },
     displayWeather: function(data) {
+        document.querySelector(".weather").classList.remove("error")
         document.querySelector(".weather").classList.add("loading");
         const { name } = data;
         const { icon, description } = data.weather[0];
@@ -32,12 +24,17 @@ let weather = {
         document.querySelector(".description").textContent = description;
         document.querySelector(".humidity").textContent = "Humidity: " + humidity + "%";
         document.querySelector(".windSpeed").textContent = "Wind Speed: " + speed + " " + "kmph ";
+        document.body.style.backgroundImage = "url('https://source.unsplash.com/1600x900/?" + name + "')";
         setTimeout(addLoading, 1000)
     },
     search: function () {
         this.fetchWeather(document.querySelector(".search-bar").value)
     },
 } 
+
+function catchError () {
+    document.querySelector(".weather").classList.add("error");
+}
 
 function addLoading () {
     document.querySelector(".weather").classList.remove("loading")
@@ -53,4 +50,4 @@ document.querySelector(".search-bar").addEventListener("keyup", function(event){
     }
 });
 
-weather.fetchWeather("singapore");
+weather.fetchWeather("shanghai");
