@@ -21,6 +21,7 @@ let weather = {
         .then((data) => this.displayWeather(data))
     },
     displayWeather: function(data) {
+        document.querySelector(".weather").classList.add("loading");
         const { name } = data;
         const { icon, description } = data.weather[0];
         const { temp, humidity } = data.main;
@@ -31,11 +32,16 @@ let weather = {
         document.querySelector(".description").textContent = description;
         document.querySelector(".humidity").textContent = "Humidity: " + humidity + "%";
         document.querySelector(".windSpeed").textContent = "Wind Speed: " + speed + " " + "kmph ";
+        setTimeout(addLoading, 1000)
     },
     search: function () {
         this.fetchWeather(document.querySelector(".search-bar").value)
-    }
+    },
 } 
+
+function addLoading () {
+    document.querySelector(".weather").classList.remove("loading")
+}
 
 document.querySelector(".search button").addEventListener('click',  function() {
     weather.search();
@@ -45,6 +51,6 @@ document.querySelector(".search-bar").addEventListener("keyup", function(event){
     if (event.key == "Enter") {
         weather.search();
     }
-})
+});
 
-weather.fetchWeather("Shanghai");
+weather.fetchWeather("singapore");
