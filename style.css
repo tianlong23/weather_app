@@ -1,0 +1,55 @@
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    color: white;
+    background-image: url("prague-city-panorama-with-famous-charles-bridge-picjumbo-com.jpg");
+    background-size: cover;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.card {
+    background-color: black;
+    width: 100%;
+    max-width: 420px;
+    border-radius: 20px;
+    padding: 10px;
+    opacity: 90%;
+}
+
+.search {
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+}
+
+input.search-bar {
+    border-radius: 24px;
+    height: 24px;
+    width: calc(100% - 120px);
+    border: none;
+    background-color: #404040;
+    color: white;
+    padding: 10px;
+}
+
+button {
+    border-radius: 50%;
+    height: 44px;
+    width: 44px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    border: none;
+    color: white;
+    background-color: #404040;
+}
+
+button:hover {
+    background-color: #606060;
+    cursor: pointer;
+    transition: .2s ease-in-out;
+}
