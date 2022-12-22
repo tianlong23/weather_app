@@ -53,3 +53,12 @@ button:hover {
     cursor: pointer;
     transition: .2s ease-in-out;
 }
+
+.description {
+    text-transform: capitalize;
+}
+
+.descriptionContainer {
+    display: flex;
+    align-items: center;
+}

@@ -25,11 +25,26 @@ let weather = {
         const { icon, description } = data.weather[0];
         const { temp, humidity } = data.main;
         const { speed } = data.wind;
-        console.log(name, icon, description, temp, humidity, speed);
         document.querySelector(".headline").textContent = "Weather in " + name;
+        document.querySelector(".icon").src = "http://openweathermap.org/img/wn/" + icon + ".png" ;
         document.querySelector(".temp").textContent = "Temperature: "+ temp + "°C";
         document.querySelector(".description").textContent = description;
         document.querySelector(".humidity").textContent = "Humidity: " + humidity + "%";
-        document.querySelector(".windSpeed").textContent = "Wind Speed: " + speed + "kmph ";
+        document.querySelector(".windSpeed").textContent = "Wind Speed: " + speed + " " + "kmph ";
+    },
+    search: function () {
+        this.fetchWeather(document.querySelector(".search-bar").value)
     }
-}
+} 
+
+document.querySelector(".search button").addEventListener('click',  function() {
+    weather.search();
+})
+
+document.querySelector(".search-bar").addEventListener("keyup", function(event){
+    if (event.key == "Enter") {
+        weather.search();
+    }
+})
+
+weather.fetchWeather("Shanghai");
